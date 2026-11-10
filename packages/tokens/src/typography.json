@@ -1,0 +1,23 @@
+{
+  "fontFamily": {
+    "headers": "Gothic A1",
+    "body": "Gothic A1"
+  },
+  "fontWeight": {
+    "200": 300,
+    "400": 400,
+    "500": 500,
+    "600": 600,
+    "700": 700
+  },
+  "fontSize": {
+    "headers.h1": 29,
+    "headers.h2": 26,
+    "headers.h3": 23,
+    "headers.h4": 20,
+    "headers.h5": 18,
+    "headers.h6": 16,
+    "paragraph.body": 16,
+    "paragraph.body-small": 14
+  }
+}

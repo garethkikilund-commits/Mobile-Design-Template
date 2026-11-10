@@ -1,0 +1,20 @@
+{
+  "name": "mobile-design-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mobile Template Design System: Figma tokens and components as a React library, documented in Storybook.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "build:tokens": "npm run build -w @garethkikilund-commits/tokens",
+    "build": "npm run build:tokens && npm run build -w @garethkikilund-commits/ui",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run build:tokens && npm run typecheck -w @garethkikilund-commits/ui",
+    "storybook": "npm run build:tokens && npm run storybook -w @garethkikilund-commits/ui",
+    "build-storybook": "npm run build:tokens && npm run build-storybook -w @garethkikilund-commits/ui"
+  }
+}

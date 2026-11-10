@@ -1,0 +1,195 @@
+/*
+ * Button. Mirrors the Figma "Buttons / Button" component set.
+ * Only semantic colour tokens are used, so light and dark themes work without changes here.
+ * Hover and Pressing are CSS states (:hover, :active), not props.
+ */
+
+.button {
+  /* Large (default) */
+  --button-height: 64px;
+  --button-padding-x: var(--size-2xl);
+  --button-gap: var(--size-xs);
+  --button-radius: var(--size-2xs);
+  --button-font-size: var(--font-size-paragraph-body);
+  --button-line-height: 24px;
+  --button-icon-size: 24px;
+
+  --button-bg: transparent;
+  --button-fg: var(--color-text-neutral-primary);
+  --button-ring: transparent;
+
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap);
+  height: var(--button-height);
+  margin: 0;
+  padding: 0 var(--button-padding-x);
+  border: 0;
+  border-radius: var(--button-radius);
+  background: var(--button-bg);
+  color: var(--button-fg);
+  /* Figma uses a 1.5px outline. An inset shadow draws it without changing the button's size. */
+  box-shadow: inset 0 0 0 1.5px var(--button-ring);
+  font-family: var(--font-family-body);
+  font-size: var(--button-font-size);
+  font-weight: var(--font-weight-500);
+  line-height: var(--button-line-height);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Not in the Figma file: a visible keyboard focus ring for accessibility. */
+.button:focus-visible {
+  outline: 2px solid var(--color-border-brand-primary);
+  outline-offset: 2px;
+}
+
+/* ---- Sizes ---- */
+.large {
+  --button-height: 64px;
+}
+
+.medium {
+  --button-height: 48px;
+}
+
+.small {
+  --button-height: 36px;
+  --button-padding-x: var(--size-xs);
+  --button-gap: var(--size-2xs);
+  --button-radius: var(--size-3xs);
+  --button-font-size: var(--font-size-paragraph-body-small);
+  --button-line-height: 20px;
+  --button-icon-size: 20px;
+}
+
+/* ---- Fill ---- */
+.fill {
+  --button-bg: var(--color-background-brand-primary);
+  --button-fg: var(--color-text-neutral-light);
+}
+
+/* ---- Outline ---- */
+.outline {
+  --button-fg: var(--color-background-brand-primary);
+  --button-ring: var(--color-border-brand-primary);
+}
+
+/* ---- None (text only) ---- */
+.none {
+  --button-fg: var(--color-text-neutral-primary);
+}
+
+/* ---- Hover (pointer devices only, so touch screens don't get stuck hover states) ---- */
+@media (hover: hover) {
+  .fill:hover:not(:disabled):not(.loading) {
+    --button-bg: var(--color-background-brand-tertiary);
+  }
+
+  .outline:hover:not(:disabled):not(.loading) {
+    --button-fg: var(--color-background-brand-tertiary);
+    --button-ring: var(--color-border-brand-inverse);
+  }
+
+  .none:hover:not(:disabled):not(.loading) {
+    --button-fg: var(--color-text-brand-mid);
+  }
+}
+
+/* ---- Pressing ---- */
+.fill:active:not(:disabled):not(.loading) {
+  --button-bg: var(--color-background-brand-secondary);
+}
+
+.outline:active:not(:disabled):not(.loading) {
+  --button-fg: var(--color-background-brand-secondary);
+  --button-ring: var(--color-border-brand-primary);
+}
+
+.none:active:not(:disabled):not(.loading) {
+  --button-fg: var(--color-text-brand-mid);
+}
+
+/* ---- Disabled ---- */
+.button:disabled {
+  cursor: not-allowed;
+  --button-fg: var(--color-text-neutral-disabled);
+}
+
+.fill:disabled {
+  --button-bg: var(--color-background-neutral-tertiary);
+}
+
+.outline:disabled {
+  --button-ring: var(--color-border-neutral-secondary);
+}
+
+/* ---- Loading (Figma "Submission") ---- */
+.loading {
+  cursor: progress;
+}
+
+.spinner {
+  flex: none;
+  box-sizing: border-box;
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0%, currentColor 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+/* ---- Parts ---- */
+.icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+}
+
+.icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  display: inline-block;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
