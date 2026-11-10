@@ -69,6 +69,7 @@ Components follow the Figma component sets. Figma variants become props, and int
 | Component | Status |
 |---|---|
 | Button | Built. Props: `size`, `variant`, `loading`, `disabled`, `iconLeft`, `iconRight` |
+| Card (Media Card) | Partly built: Boxed and Inside, body Top or Bottom. Not built: Unboxed, Slider, Hover/Pressing/Active/Loading states |
 
 ## Decisions and differences from Figma
 
