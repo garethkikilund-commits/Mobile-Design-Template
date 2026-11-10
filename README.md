@@ -70,19 +70,22 @@ Components follow the Figma component sets. Figma variants become props, and int
 |---|---|
 | Button | Built. Props: `size`, `variant`, `loading`, `disabled`, `iconLeft`, `iconRight` |
 
-## Known gaps and decisions
+## Decisions and differences from Figma
 
-These came out of building the first version. Each one needs a decision in Figma or from the design team.
+Decided:
 
-1. **Dark `Text/Brand/Mid` in Figma is `Purple / 90`**, which is almost invisible on a dark background. The code uses `Purple / 40`. Change it in Figma to match, otherwise the two will drift.
-2. **No line-height tokens.** Line heights are set on the Figma text layers (24px and 20px for the Button), so the Button hard-codes them.
-3. **Font weight `200` is labelled "Light" in Figma**, but Light is weight 300 in Gothic A1. The code uses the number in the token name. Confirm which is intended.
-4. **Outline buttons take their text colour from `Background/Brand/*` tokens.** Text tokens would normally be used for text. The code follows Figma exactly.
-5. **Button icons and spinner sizes for the Small button are assumed to be 20px.** Figma only shows 24px icons on Large buttons.
-6. **Focus ring**: Figma has no keyboard focus state, so the Button adds a 2px ring in `Border/Brand/Primary`.
-7. **Placeholder icons**: the stories use simple stand-in icons. The real icon set needs to be added.
-8. **The dark brand gradient tokens** now use lavender end stops, set in Figma by hand. Confirm they look right on dark screens.
-9. **Figma plan limit**: only one mode per variable collection is editable through automation, so Dark mode edits in Figma are manual.
+1. **Dark `Text/Brand/Mid` differs from Figma on purpose.** Figma has `Purple / 90`, which is almost invisible on a dark background, and its Dark mode can't currently be edited. The code uses `Purple / 40`. When Dark mode becomes editable in Figma, change it there to match.
+2. **Line heights are hard-coded.** Figma has no line-height tokens, so the Button uses 24px (Large, Medium) and 20px (Small), matching the Figma text layers. Revisit if line-height tokens are added.
+3. **Font weight `200` is 300 in code.** In Figma the token named `200` is the `Light` style, which is weight 300 in Gothic A1. The CSS variable keeps Figma's name (`--font-weight-200`) so the mapping stays one to one, but its value is `300`. The other weights match their names.
+4. **The dark brand gradient follows Figma.** `Purple / 100` at 0%, then `Purple / 30` and `Purple / 20` at 75%. It hasn't been reviewed on real dark screens yet.
+
+Still open (need design input):
+
+5. **Outline buttons take their text colour from `Background/Brand/*` tokens.** Text tokens would normally be used for text. The code follows Figma exactly.
+6. **Small Button icon and spinner size is assumed to be 20px.** Figma only shows 24px icons on Large buttons.
+7. **Focus ring.** Figma has no keyboard focus state, so the Button adds a 2px ring in `Border/Brand/Primary`.
+8. **Placeholder icons.** The stories use simple stand-in icons. The real icon set needs to be added.
+9. **Figma and code can drift in Dark mode.** Dark values can't be edited in Figma at the moment, so any dark difference is recorded in this list (see item 1).
 
 ## Roadmap
 
