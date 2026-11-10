@@ -1,0 +1,131 @@
+/* Mirrors the Figma "Card / Media Card" component. Colours use semantic tokens only. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 342px;
+  min-height: 303px;
+  overflow: hidden;
+  border-radius: var(--size-xs);
+  font-family: var(--font-family-body);
+}
+
+.top {
+  flex-direction: column-reverse;
+}
+
+.media {
+  position: relative;
+  flex: 1 0 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-background-neutral-primary);
+}
+
+/* Any image passed in fills the media area. */
+.media > img,
+.media > picture,
+.media > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.action {
+  position: absolute;
+  top: var(--size-regular);
+  right: var(--size-regular);
+  display: flex;
+  gap: var(--size-2xs);
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2xs);
+  padding: var(--size-regular);
+}
+
+.content {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--size-2xs);
+}
+
+.copy {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  word-break: break-word;
+  line-height: 24px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-headers);
+  font-size: var(--font-size-headers-h6);
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-paragraph-body);
+  font-weight: 400;
+}
+
+.trailing {
+  flex: none;
+}
+
+/* Boxed: text sits on its own panel under or over the image. */
+.boxed .body {
+  background: var(--color-background-neutral-primary);
+}
+.boxed .title {
+  color: var(--color-text-neutral-primary);
+}
+.boxed .description {
+  color: var(--color-text-neutral-tertiary);
+}
+
+/* Inside: the image fills the card and the text sits on a dark gradient. */
+.inside {
+  display: block;
+}
+.inside .media {
+  position: absolute;
+  inset: 0;
+}
+.inside .body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--color-background-overlay-gradient-monochromatic-dark-none),
+    var(--color-background-overlay-gradient-monochromatic-dark-full)
+  );
+}
+.inside.top .body {
+  top: 0;
+  bottom: auto;
+  background: linear-gradient(
+    to top,
+    var(--color-background-overlay-gradient-monochromatic-dark-none),
+    var(--color-background-overlay-gradient-monochromatic-dark-full)
+  );
+}
+.inside .title,
+.inside .description {
+  color: var(--color-text-neutral-inverse-primary);
+}
